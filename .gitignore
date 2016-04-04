@@ -1,0 +1,6 @@
+.idea
+src/main.gb
+src/main.lst
+src/main.map
+src/main.sym
+*.gb
