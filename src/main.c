@@ -17,7 +17,8 @@ typedef struct player
 
 void renderPlayer(Player *p)
 {
-  box(p->w, p->h, p->x, p->y, M_FILL);
+  box(p->x, p->y, p->x + p->w, p->y + p->h, M_FILL);
+  //plot_point(p->x, p->y);
 }
 
 void main() {
@@ -40,13 +41,15 @@ void main() {
 
       i = joypad();
       if(i & J_UP)
-	       p.y -= 0x0010;
+	       p.y -= 1;
       if(i & J_DOWN)
-	       p.y += 0x0010;
+	       p.y += 1;
       if(i & J_LEFT)
-	       p.x -= 0x0010;
+	       p.x -= 1;
       if(i & J_RIGHT)
-	       p.x += 0x0010;
+	       p.x += 1;
+
+      wait_vbl_done();
 
       /*
       for (c=0; c<=10; c++) {
