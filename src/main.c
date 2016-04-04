@@ -21,6 +21,14 @@ void renderPlayer(Player *p)
   //plot_point(p->x, p->y);
 }
 
+UBYTE min(UBYTE a, UBYTE b) {
+    return a<b ? a : b;
+}
+
+UBYTE max(UBYTE a, UBYTE b) {
+    return a>b ? a : b;
+}
+
 void main() {
     UBYTE c,x,i;
     Player p = {50, 50, 10, 10};
@@ -41,13 +49,26 @@ void main() {
 
       i = joypad();
       if(i & J_UP)
+      {
 	       p.y -= 1;
+       }
       if(i & J_DOWN)
 	       p.y += 1;
       if(i & J_LEFT)
 	       p.x -= 1;
       if(i & J_RIGHT)
 	       p.x += 1;
+
+      // check bounds
+      if(p.x < 0 || p.x + p.w >= GRAPHICS_WIDTH)
+      {
+          p.x = max(min(p.x, GRAPHICS_WIDTH-1), 0);
+      }
+
+      if(p.y < 0 || p.y + p.h >= GRAPHICS_HEIGHT)
+      {
+          p.y = max(min(p.y, GRAPHICS_HEIGHT-1), 0);
+      }
 
       wait_vbl_done();
 

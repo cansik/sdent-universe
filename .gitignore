@@ -4,3 +4,4 @@ src/main.lst
 src/main.map
 src/main.sym
 *.gb
+build.sh
