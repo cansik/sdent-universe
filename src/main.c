@@ -30,11 +30,10 @@ UBYTE max(UBYTE a, UBYTE b) {
 }
 
 void main() {
-    UBYTE c,x,i;
+    UBYTE c,x,y,i;
     Player p = {50, 50, 10, 10};
 
     c=50;
-    x = 1;
 
     printf("The Vacuumizor");
     printf("\nPress Start");
@@ -46,28 +45,28 @@ void main() {
     {
       //draw
       renderPlayer(&p);
-
+      color(LTGREY,WHITE,SOLID);
       i = joypad();
+      x = p.x;
+      y = p.y;
       if(i & J_UP)
-      {
-	       p.y -= 1;
-       }
+	       y -= 1;
       if(i & J_DOWN)
-	       p.y += 1;
+	       y += 1;
       if(i & J_LEFT)
-	       p.x -= 1;
+	       x -= 1;
       if(i & J_RIGHT)
-	       p.x += 1;
+	       x += 1;
 
       // check bounds
-      if(p.x < 0 || p.x + p.w >= GRAPHICS_WIDTH)
+      if(x > 0 && x + p.w < GRAPHICS_WIDTH)
       {
-          p.x = max(min(p.x, GRAPHICS_WIDTH-1), 0);
+          p.x = x;
       }
 
-      if(p.y < 0 || p.y + p.h >= GRAPHICS_HEIGHT)
+      if(y > 0 && y + p.h < GRAPHICS_HEIGHT)
       {
-          p.y = max(min(p.y, GRAPHICS_HEIGHT-1), 0);
+          p.y = y;
       }
 
       wait_vbl_done();
