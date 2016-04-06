@@ -21,14 +21,6 @@ void renderPlayer(Player *p)
   //plot_point(p->x, p->y);
 }
 
-UBYTE min(UBYTE a, UBYTE b) {
-    return a<b ? a : b;
-}
-
-UBYTE max(UBYTE a, UBYTE b) {
-    return a>b ? a : b;
-}
-
 void main() {
     UBYTE c,x,y,i;
     Player p = {50, 50, 10, 10};
@@ -45,7 +37,7 @@ void main() {
     {
       //draw
       renderPlayer(&p);
-      color(LTGREY,WHITE,SOLID);
+
       i = joypad();
       x = p.x;
       y = p.y;
