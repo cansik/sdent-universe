@@ -9,10 +9,7 @@
 #define WINSZY    0x50
 
 void main() {
-    UBYTE c;
-    Player p = {50, 50, 10, 10};
-
-    c=50;
+    Player p = {50, 50, 5, 5};
 
     printf("The Vacuumizor");
     printf("\nPress Start");
