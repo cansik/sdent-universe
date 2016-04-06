@@ -1,24 +1,13 @@
+AS = ${GBDKDIR}/bin/lcc -c
 CC = ${GBDKDIR}/bin/lcc -Wa-l -Wl-m -Wl-j
 
-BINS = main.gb
+BIN = universe.gb
+OBJS =  main.o  player.o
 
-all: $(BINS)
+all: $(BIN)
 
-make.bat: Makefile
-	echo "REM Automatically generated from Makefile" > make.bat
-	make -sn | sed y/\\//\\\\/ | grep -v make >> make.bat
-
-%.o:	%.c
-	$(CC) -c -o $@ $<
-
-%.s:	%.c
-	$(CC) -S -o $@ $<
-
-%.o:	%.s
-	$(CC) -c -o $@ $<
-
-%.gb:	%.o
-	$(CC) -o $@ $<
+$(BIN): $(OBJS)
+		$(CC) -o $(BIN) $(OBJS)
 
 clean:
-	rm -f *.o *.lst *.map *.gb *~ *.rel *.cdb *.ihx *.lnk *.sym *.asm
+		rm -f $(BIN) $(OBJS) *~

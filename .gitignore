@@ -5,3 +5,7 @@ src/main.map
 src/main.sym
 *.gb
 build.sh
+*.lst
+*.o
+*.map
+*.sym
