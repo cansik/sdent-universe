@@ -1,4 +1,4 @@
-typedef struct
+typedef struct player
 {
    UBYTE x;
    UBYTE y;
