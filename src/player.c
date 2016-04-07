@@ -5,15 +5,6 @@
 
 #include "player.h"
 
-typedef struct player
-{
-   UBYTE x;
-   UBYTE y;
-
-   UBYTE w;
-   UBYTE h;
-};
-
 void renderPlayer(Player *p)
 {
   box(p->x, p->y, p->x + p->w, p->y + p->h, M_FILL);
