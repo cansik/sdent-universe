@@ -21,22 +21,22 @@ void updatePlayer(Player *p)
   x = p->x;
   y = p->y;
 
-  if(i & J_UP)
+  if(i & J_UP && y > 0)
      y -= 1;
   if(i & J_DOWN)
      y += 1;
-  if(i & J_LEFT)
+  if(i & J_LEFT && x > 0)
      x -= 1;
   if(i & J_RIGHT)
      x += 1;
 
   // check bounds
-  if(x > 0 && x + p->w < GRAPHICS_WIDTH)
+  if(x >= 0 && x + p->w < GRAPHICS_WIDTH)
   {
       p->x = x;
   }
 
-  if(y > 0 && y + p->h < GRAPHICS_HEIGHT)
+  if(y >= 0 && y + p->h < GRAPHICS_HEIGHT)
   {
       p->y = y;
   }
