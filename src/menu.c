@@ -10,7 +10,7 @@
 
 void renderMenu(Menu *m)
 {
-  box(m->x, m->y, m->x + m->w, m->y + m->h, M_FILL);
+  //box(m->x, m->y, m->x + m->w, m->y + m->h, M_FILL);
   //box(20, 20, 50, 50, M_FILL);
   //plot_point(p->x, p->y);
 
