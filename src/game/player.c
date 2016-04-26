@@ -30,7 +30,7 @@ void renderPlayer(Player *p)
   SHOW_SPRITES;
 }
 
-void updatePlayer(Player *p)
+UBYTE updatePlayer(Player *p)
 {
   UBYTE x,y,i;
 
@@ -38,6 +38,10 @@ void updatePlayer(Player *p)
 
   x = p->x;
   y = p->y;
+  
+  if (i & J_SELECT) {
+    return 1;
+  }
 
   if(i & J_UP && y > 0) {
      y -= 1;
@@ -70,4 +74,6 @@ void updatePlayer(Player *p)
   {
       p->y = y;
   }
+  
+  return 0;
 }
