@@ -25,7 +25,7 @@ void setupPointer() {
 
    set_sprite_data(0, 1, pointerTiles);
 
-   set_sprite_tile(0, 1);
+   set_sprite_tile(0, 0);
 
    move_sprite(0, pointerX, pointerY[currSelection]);
 
@@ -74,7 +74,11 @@ UBYTE mainMenu() {
 
   move_bkg(0,0);
   
-  set_bkg_data( 0, 11, menuTiles );
+  set_bkg_data( 0, 110, menuTiles );
+  // Switch to VRAM
+  VBK_REG = 1;
+
+  // Switch out of VRAM
   VBK_REG = 0;
   set_bkg_tiles(0,0,menuMapWidth,menuMapHeight,menuMap);
 

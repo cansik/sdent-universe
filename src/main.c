@@ -20,7 +20,10 @@ void main() {
           play();
           break;
         case 2:
-          play();
+          //Highscore
+          break;
+        case 3:
+          //About
           break;
       }
       
