@@ -10,14 +10,14 @@
 
 #define ITEMCOUNT 0x03
 
-UBYTE pointerX = 36;
+UBYTE pointerX = 34;
 UBYTE currSelection = 1;
 UBYTE pointerY[] =
 {
   0, /*unused */
-  80,  /*PLAY*/
-  92,  /*HIGHSCORE*/
-  104  /*Third Point*/
+  71,  /*PLAY*/
+  89,  /*HIGHSCORE*/
+  106  /*About*/
 };
 
 void setupPointer() {
