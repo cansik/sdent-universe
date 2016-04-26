@@ -4,6 +4,8 @@
 
 #include "game.h"
 #include "player.h"
+#include "spaceTiles.h"
+#include "spaceMap.h"
 
 
 void play() {
@@ -12,6 +14,18 @@ void play() {
     DISPLAY_OFF;
     HIDE_BKG;
     HIDE_SPRITES;
+    
+    move_bkg(0,0);
+ 
+    set_bkg_data( 0, 76, spaceTiles );
+  // Switch to VRAM
+    VBK_REG = 1;
+
+  // Switch out of VRAM
+    VBK_REG = 0;
+    set_bkg_tiles(0,0,spaceMapWidth,spaceMapHeight,spaceMap);
+
+    SHOW_BKG;
     
     DISPLAY_ON;
     
