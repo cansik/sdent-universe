@@ -74,7 +74,7 @@ UBYTE mainMenu() {
 
   move_bkg(0,0);
   
-  set_bkg_data( 0, 111, menuTiles );
+  set_bkg_data( 0, 110, menuTiles );
   // Switch to VRAM
   VBK_REG = 1;
 
