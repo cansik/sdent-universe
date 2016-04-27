@@ -7,10 +7,10 @@ BIN = bin/main.gb
 all: $(BIN)
 
 $(BIN): $(OBJ)
-	    $(CC) -o $(BIN) $(OBJ)
+		$(CC) -o $(BIN) $(OBJ)
 
 %.o: %.c
-			$(CC) -c $< -o $@
+		$(CC) -c $< -o $@
 
 clean:
 		rm -f $(BIN) $(OBJS) *~
