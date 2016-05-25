@@ -17,8 +17,8 @@ void initTrash() {
     seed += 1;
     for(i = 0; i < NUMOFTRASH; i++)
      {
-         trashes[i].x = 150;
-         trashes[i].y = 50;
+         trashes[i].x = rand() & 159;
+         trashes[i].y = rand() & 143;
          trashes[i].sprite = i+1;
          trashes[i].value = 1;
          
