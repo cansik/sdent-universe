@@ -6,7 +6,7 @@
 #include "player.h"
 #include "spaceTiles.h"
 #include "spaceMap.h"
-
+#include "trash.h"
 
 void play() {
     Player p = {50, 50, 5, 5};
@@ -28,7 +28,8 @@ void play() {
     SHOW_BKG;
     
     DISPLAY_ON;
-    
+    initPlayer();
+    initTrash();
     while(1) {
         renderPlayer(&p);
         if (updatePlayer(&p)) {

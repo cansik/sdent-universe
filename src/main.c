@@ -11,8 +11,6 @@
 void main() {
   UBYTE choice;
     
-
-
     while(1)
     {
       choice = mainMenu();

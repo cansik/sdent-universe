@@ -7,5 +7,6 @@ typedef struct player
    UBYTE h;
 } Player;
 
+void initPlayer();
 void renderPlayer(Player *p);
 UBYTE updatePlayer(Player *p);
