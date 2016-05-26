@@ -4,6 +4,7 @@
 #include <gb/drawing.h>
 
 #include "player.h"
+#include "constants.h"
 
 unsigned char satelite[] =
 {
@@ -75,12 +76,12 @@ UBYTE updatePlayer(Player *p)
   }
 
   // check bounds
-  if(x >= 0 && x + p->w < GRAPHICS_WIDTH)
+  if(x >= PADDING_WIDTH && x + p->w < GRAPHICS_WIDTH+PADDING_WIDTH)
   {
       p->x = x;
   }
 
-  if(y >= 0 && y + p->h < GRAPHICS_HEIGHT)
+  if(y >= PADDING_HEIGHT && y + p->h < GRAPHICS_HEIGHT+PADDING_HEIGHT)
   {
       p->y = y;
   }

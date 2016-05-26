@@ -6,13 +6,30 @@
 #include <gb/drawing.h>
 
 #include "trash.h"
+#include "constants.h"
 #define NUMOFTRASH 10 
 
 Trash trashes[NUMOFTRASH];
 UBYTE seed = 0;
 
+void trash(Trash *t, UBYTE i) {
+    UBYTE z;
+    z = rand();
+    if (z > 160) {
+        z -= 160;
+    }
+    if (z < PADDING_WIDTH) {
+        z = PADDING_WIDTH;
+    }
+    t->x = z;
+    t->y = 0;
+    t->speed = rand() & 3; //Alternative 7
+    t->sprite = i+1;
+    t->value = 1;
+}
+
 void initTrash() {
-    UBYTE i, z;
+    UBYTE i;
     if (seed >= 255) {
         seed = 1;
     }
@@ -20,18 +37,7 @@ void initTrash() {
     seed++;
     for(i = 0; i < NUMOFTRASH; i++)
      {   
-         z = rand();
-         if (z > 160) {
-             z -= 160;
-         }
-         trashes[i].x = z;
-         z = rand();
-         if (z > 160) {
-             z -= 160;
-         }
-         trashes[i].y = z;
-         trashes[i].sprite = i+1;
-         trashes[i].value = 1;
+        trash(&trashes[i], i);
          
          set_sprite_tile(trashes[i].sprite,i%3+3); 
          move_sprite(trashes[i].sprite,trashes[i].x,trashes[i].y);   
@@ -42,5 +48,16 @@ void cleanupTrash() {
     UBYTE i;
     for (i = 0; i < NUMOFTRASH; i++) {
         move_sprite(trashes[i].sprite, 0, 0); //Move them out of view, is there a better way?
+    }
+}
+
+void updateTrash() {
+    UBYTE i;
+    for (i = 0; i < NUMOFTRASH; i++) {
+        trashes[i].y+=trashes[i].speed;
+        if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
+            trash(&trashes[i], i);
+        }
+        move_sprite(trashes[i].sprite, trashes[i].x, trashes[i].y);
     }
 }

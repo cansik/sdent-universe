@@ -1,0 +1,2 @@
+#define PADDING_WIDTH 7
+#define PADDING_HEIGHT 15

@@ -36,5 +36,7 @@ void play() {
             cleanupTrash();
             return;
         }
+        updateTrash();
+        delay(15);
     }
 }
