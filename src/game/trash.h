@@ -8,3 +8,4 @@ typedef struct trash
 } Trash;
 
 void initTrash();
+void cleanupTrash();

@@ -33,6 +33,7 @@ void play() {
     while(1) {
         renderPlayer(&p);
         if (updatePlayer(&p)) {
+            cleanupTrash();
             return;
         }
     }
