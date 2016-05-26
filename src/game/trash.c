@@ -12,13 +12,22 @@ Trash trashes[NUMOFTRASH];
 UBYTE seed = 0;
 
 void initTrash() {
-    UBYTE i;
+    UBYTE i, z;
     initarand(seed);
     seed += 1;
     for(i = 0; i < NUMOFTRASH; i++)
-     {
-         trashes[i].x = rand() & 159;
-         trashes[i].y = rand() & 143;
+     {   
+         z = rand();
+         if (z > 160) {
+             z -= 160;
+         }
+        
+         trashes[i].x = z;
+         z = rand();
+         if (z > 160) {
+             z -= 160;
+         }
+         trashes[i].y = z;
          trashes[i].sprite = i+1;
          trashes[i].value = 1;
          
