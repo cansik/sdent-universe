@@ -7,7 +7,10 @@
 
 #include "trash.h"
 #include "constants.h"
-#define NUMOFTRASH 10 
+
+#define NUMOFTRASH 10
+#define X_MARGIN 3
+#define Y_MARGIN 6
 
 Trash trashes[NUMOFTRASH];
 UBYTE seed = 0;
@@ -36,11 +39,11 @@ void initTrash() {
     initarand(seed);
     seed++;
     for(i = 0; i < NUMOFTRASH; i++)
-     {   
+     {
         trash(&trashes[i], i);
-         
-         set_sprite_tile(trashes[i].sprite,i%3+3); 
-         move_sprite(trashes[i].sprite,trashes[i].x,trashes[i].y);   
+
+         set_sprite_tile(trashes[i].sprite,i%3+3);
+         move_sprite(trashes[i].sprite,trashes[i].x,trashes[i].y);
      }
 }
 
@@ -51,13 +54,19 @@ void cleanupTrash() {
     }
 }
 
-void updateTrash() {
+void updateTrash(UBYTE x, UBYTE y) {
     UBYTE i;
     for (i = 0; i < NUMOFTRASH; i++) {
-        trashes[i].y+=trashes[i].speed;
-        if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
-            trash(&trashes[i], i);
+        if(trashes[i].x <= x + X_MARGIN && trashes[i].x >= x - X_MARGIN && trashes[i].y <= y + Y_MARGIN && trashes[i].y >= y) {
+          trashes[i].x = 0;
+          trashes[i].y = 0;
+          move_sprite(trashes[i].sprite, 0, 0);
+        } else {
+            trashes[i].y+=trashes[i].speed;
+            if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
+                trash(&trashes[i], i);
+            }
+            move_sprite(trashes[i].sprite, trashes[i].x, trashes[i].y);
         }
-        move_sprite(trashes[i].sprite, trashes[i].x, trashes[i].y);
     }
 }

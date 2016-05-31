@@ -5,50 +5,96 @@
 #include "storyTiles.h"
 #include "storyMap.h"
 
-
-void displayStory() {
-    int joy;
-
-	DISPLAY_OFF;
+void loadStory1() {
+    DISPLAY_OFF;
 	HIDE_BKG;
     HIDE_SPRITES;
+    
+    set_bkg_data( 0, STORY1COUNT, story1Tiles );
+    VBK_REG = 1;
 
+    VBK_REG = 0;
+    set_bkg_tiles(0,0,storyMapWidth,storyMapHeight,story1Map);
+    
+    SHOW_BKG;
+    DISPLAY_ON;
+}
 
-  /*************************************************************************/
-  /* Next, the tile-data is send to the display;
-  /*************************************************************************/
+void loadStory2() {
+    DISPLAY_OFF;
+	HIDE_BKG;
+    HIDE_SPRITES;
+    
+    set_bkg_data( 0, STORY2COUNT, story2Tiles );
+    
+    VBK_REG = 1;
 
-  set_bkg_data( 0, 255, storyTiles );
+    VBK_REG = 0;
+    set_bkg_tiles(0,0,storyMapWidth,storyMapHeight,story2Map);
+    
+    SHOW_BKG;
+    DISPLAY_ON;
+}
 
-  /*************************************************************************/
-  /* Now it's time to send the map-data to the display. Again, in two      */
-  /* steps, as the tiles and attributes reside in different banks.         */
-  /* The data is send to the display by using the command:                 */
-  /*   set_bkg_tiles( Left, Top, Width, Height, Map-data )                 */
-  /*************************************************************************/
+void loadStory3() {
+    DISPLAY_OFF;
+	HIDE_BKG;
+    HIDE_SPRITES;
+    
+    set_bkg_data( 0, STORY3COUNT, story3Tiles );
+    
+    VBK_REG = 1;
 
-  VBK_REG = 1;
+    VBK_REG = 0;
+    set_bkg_tiles(0,0,storyMapWidth,storyMapHeight,story3Map);
+    
+    SHOW_BKG;
+    DISPLAY_ON;
+}
 
-  VBK_REG = 0;
-  set_bkg_tiles(0,0,storyMapWidth,storyMapHeight,storyMap);
+void loadStory(UBYTE i) {
+    if (i == 1) {
+        loadStory1();
+        return;
+    } 
+    if (i == 2) {
+        loadStory2();
+        return;
+    } 
+    if (i == 3) {
+        loadStory3();
+        return;
+    } 
+}
 
+void displayStory() {
+    int joy, curr, ch;
 
+	loadStory1();
+    curr = 1;
 
-  /*************************************************************************/
-  /* the remaining code init the Gameboy and makes it wait untill you turn */
-  /* it off..                                                              */
-  /*************************************************************************/
-
-  SHOW_BKG;
-  DISPLAY_ON;
-
-   do
-   {
-   	joy = joypad();
-   } while (!joy);
-	waitpadup();
-
-  	HIDE_BKG;
-
-   return;
+    do
+    {
+        ch = 0;
+        joy = joypad();
+        if(joy & J_DOWN) {
+            curr++;
+            ch = 1;
+        }
+        if(joy & J_UP) {
+            --curr;
+            ch = 1;
+        }
+        if (curr == 0) {
+            curr = 1;
+            ch = 0;
+        }
+        if (curr > 3) {
+            HIDE_BKG;
+            return;
+        }
+        if (ch == 1) {
+            loadStory(curr);
+        }
+    } while (1);
 }

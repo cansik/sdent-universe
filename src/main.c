@@ -7,28 +7,29 @@
 #include "menu/menu.h"
 #include "game/game.h"
 #include "about/about.h"
-#include "sound/sound.h"
+#include "story/story.h"
 
 void main() {
-  UBYTE choice;
+    UBYTE choice;
+    
+    displayStory();
+    
+    while(1)
+    {
+        choice = mainMenu();
+        switch(choice) {
+          case 1:
+              play();
+              break;
+          case 2:
+              //Highscore
+              break;
+          case 3:
+              displayAbout();
+              break;
+      }
+      
 
-  menuSound();
-
-  while(1)
-  {
-    choice = mainMenu();
-    switch(choice) {
-      case 1:
-        play();
-        break;
-      case 2:
-        //Highscore
-        break;
-      case 3:
-        displayAbout();
-        break;
+      wait_vbl_done();
     }
-
-    wait_vbl_done();
-  }
 }

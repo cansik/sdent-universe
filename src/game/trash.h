@@ -11,4 +11,4 @@ typedef struct trash
 void initTrash();
 void cleanupTrash();
 
-void updateTrash();
+void updateTrash(UBYTE x, UBYTE y);
