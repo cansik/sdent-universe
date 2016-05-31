@@ -1,0 +1,2 @@
+void menuSound();
+void timerInterrupt();

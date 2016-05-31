@@ -7,6 +7,7 @@
 #include "menuTiles.h"
 #include "menuMap.h"
 #include "pointerTiles.h"
+#include "sound/sound.h"
 
 #define ITEMCOUNT 0x03
 
@@ -59,7 +60,7 @@ UBYTE checkInput() {
     }
     lastButton = J_DOWN;
   }
-  
+
 
   if(i & J_START || i & J_A)
     return currSelection;
@@ -69,11 +70,12 @@ UBYTE checkInput() {
 
 UBYTE mainMenu() {
   UBYTE selection;
+  UBYTE soundTimer = 0;
   DISPLAY_OFF;
   HIDE_BKG;
 
   move_bkg(0,0);
-  
+
   set_bkg_data( 0, 176, menuTiles );
   // Switch to VRAM
   VBK_REG = 1;
@@ -84,14 +86,23 @@ UBYTE mainMenu() {
 
   SHOW_BKG;
   DISPLAY_ON;
-  
+
   setupPointer();
-  
+
   while(1) {
     selection = checkInput();
     movePointer();
     if (selection > 0) {
       return selection;
     }
+
+    // sound
+    if(soundTimer == 128)
+    {
+      soundTimer = 0;
+      timerInterrupt();
+    }
+
+    soundTimer++;
   }
 }
