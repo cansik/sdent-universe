@@ -10,8 +10,18 @@ Now we cannot launch rockets anymore because there is so much waste in space tha
 So ESA developed a new space ship `The Trasher` which has only one purpose. To clean up the universe!
  
 ## Impressions
+
+### Mockups
 ![Mockups](img/impression.png)
 *Mockups*
+
+### Screens
+
+![Mockups](design/Menu_new_lowres.png)
+![Mockups](design/new_story_1_lowres.png)
+![Mockups](design/new_story_2_lowres.png)
+![Mockups](design/new_story_3_lowres.png)
+![Mockups](design/about_lowres.png)
 
 ## About
 Developed by
