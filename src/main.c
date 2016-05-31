@@ -8,17 +8,19 @@
 #include "game/game.h"
 #include "about/about.h"
 #include "story/story.h"
+#include "sound/sound.h"
 
 void main() {
     UBYTE choice;
-    
-    displayStory();
-    
+
+    menuSound();
+
     while(1)
     {
         choice = mainMenu();
         switch(choice) {
           case 1:
+              displayStory();
               play();
               break;
           case 2:
@@ -28,7 +30,7 @@ void main() {
               displayAbout();
               break;
       }
-      
+
 
       wait_vbl_done();
     }
