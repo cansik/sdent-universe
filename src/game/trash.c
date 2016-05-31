@@ -10,7 +10,7 @@
 
 #define NUMOFTRASH 10
 #define X_MARGIN 3
-#define Y_MARGIN 6
+#define Y_MARGIN 3
 
 Trash trashes[NUMOFTRASH];
 UBYTE seed = 0;
@@ -54,13 +54,14 @@ void cleanupTrash() {
     }
 }
 
-void updateTrash(UBYTE x, UBYTE y) {
+void updateTrash(UBYTE x, UBYTE y, UBYTE *score) {
     UBYTE i;
     for (i = 0; i < NUMOFTRASH; i++) {
-        if(trashes[i].x <= x + X_MARGIN && trashes[i].x >= x - X_MARGIN && trashes[i].y <= y + Y_MARGIN && trashes[i].y >= y) {
+        if(trashes[i].x <= x + X_MARGIN && trashes[i].x >= x - X_MARGIN && trashes[i].y <= y + Y_MARGIN && trashes[i].y >= y - Y_MARGIN) {
           trashes[i].x = 0;
           trashes[i].y = 0;
           move_sprite(trashes[i].sprite, 0, 0);
+          *score++;
         } else {
             trashes[i].y+=trashes[i].speed;
             if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {

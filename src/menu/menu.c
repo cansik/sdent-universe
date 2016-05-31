@@ -7,7 +7,7 @@
 #include "menuTiles.h"
 #include "menuMap.h"
 #include "pointerTiles.h"
-#include "sound/sound.h"
+#include "../sound/sound.h"
 
 #define ITEMCOUNT 0x03
 

@@ -10,6 +10,7 @@
 
 void play() {
     Player p = {50, 50, 5, 5};
+    UBYTE score = 0;
 
     DISPLAY_OFF;
     HIDE_BKG;
@@ -36,7 +37,7 @@ void play() {
             cleanupTrash();
             return;
         }
-        updateTrash(p.x, p.y);
+        updateTrash(p.x, p.y, &score);
         delay(15);
     }
 }
