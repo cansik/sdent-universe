@@ -10,13 +10,13 @@
 
 void play() {
     Player p = {50, 50, 5, 5};
-    
+
     DISPLAY_OFF;
     HIDE_BKG;
     HIDE_SPRITES;
-    
+
     move_bkg(0,0);
- 
+
     set_bkg_data( 0, 76, spaceTiles );
   // Switch to VRAM
     VBK_REG = 1;
@@ -26,7 +26,7 @@ void play() {
     set_bkg_tiles(0,0,spaceMapWidth,spaceMapHeight,spaceMap);
 
     SHOW_BKG;
-    
+
     DISPLAY_ON;
     initPlayer();
     initTrash();
@@ -36,7 +36,7 @@ void play() {
             cleanupTrash();
             return;
         }
-        updateTrash();
+        updateTrash(p.x, p.y);
         delay(15);
     }
 }
