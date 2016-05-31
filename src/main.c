@@ -6,7 +6,7 @@
 
 #include "menu/menu.h"
 #include "game/game.h"
-#include "story/story.h"
+#include "about/about.h"
 
 void main() {
   UBYTE choice;
@@ -22,7 +22,7 @@ void main() {
           //Highscore
           break;
         case 3:
-          displayStory();
+          displayAbout();
           break;
       }
       
