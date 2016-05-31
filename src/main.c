@@ -12,11 +12,12 @@
 
 void main() {
     UBYTE choice;
-
-    menuSound();
+    enableSound();
 
     while(1)
     {
+        resetMusic();
+        
         choice = mainMenu();
         switch(choice) {
           case 1:
@@ -30,7 +31,6 @@ void main() {
               displayAbout();
               break;
       }
-
 
       wait_vbl_done();
     }

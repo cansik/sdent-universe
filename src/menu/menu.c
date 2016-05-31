@@ -70,7 +70,6 @@ UBYTE checkInput() {
 
 UBYTE mainMenu() {
   UBYTE selection;
-  UBYTE soundTimer = 0;
   DISPLAY_OFF;
   HIDE_BKG;
 
@@ -97,12 +96,6 @@ UBYTE mainMenu() {
     }
 
     // sound
-    if(soundTimer == 128)
-    {
-      soundTimer = 0;
-      timerInterrupt();
-    }
-
-    soundTimer++;
+    playMusic();
   }
 }

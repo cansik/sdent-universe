@@ -5,6 +5,8 @@
 #include "aboutTiles.h"
 #include "aboutMap.h"
 
+#include "../sound/sound.h"
+
 
 void displayAbout() {
     int joy;
