@@ -1,13 +1,5 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <gb/console.h>
 
 #include "menu.h"
-#include "menuTiles.h"
-#include "menuMap.h"
-#include "pointerTiles.h"
-#include "../sound/sound.h"
 
 #define ITEMCOUNT 0x03
 

@@ -1,9 +1,4 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-
-#include "storyTiles.h"
-#include "storyMap.h"
+#include "story.h"
 
 #define STORY_DELAY 150
 

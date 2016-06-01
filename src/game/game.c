@@ -1,12 +1,5 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-
 #include "game.h"
-#include "player.h"
-#include "spaceTiles.h"
-#include "spaceMap.h"
-#include "trash.h"
+
 
 void play() {
     Player p = {50, 50, 5, 5};

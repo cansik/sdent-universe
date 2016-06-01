@@ -1,14 +1,4 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <gb/console.h>
-#include <gb/drawing.h>
-
-#include "menu/menu.h"
-#include "game/game.h"
-#include "about/about.h"
-#include "story/story.h"
-#include "sound/sound.h"
+#include "main.h"
 
 void main() {
     UBYTE choice;
@@ -17,7 +7,7 @@ void main() {
     while(1)
     {
         resetMusic();
-        
+
         choice = mainMenu();
         switch(choice) {
           case 1:

@@ -1,12 +1,7 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <rand.h>
-#include <gb/console.h>
-#include <gb/drawing.h>
+
 
 #include "trash.h"
-#include "constants.h"
+
 
 #define NUMOFTRASH 10
 #define X_MARGIN 3
@@ -16,7 +11,7 @@ Trash trashes[NUMOFTRASH];
 UBYTE seed = 0;
 UBYTE level = 1;
 
-void trash(Trash *t, UBYTE i) {
+void trash(Trash *t) {
     UBYTE z;
     z = rand();
     if (z > 160) {
@@ -71,7 +66,7 @@ void updateTrash(UBYTE x, UBYTE y, UBYTE *score) {
         } else {
             trashes[i].y+=trashes[i].speed;
             if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
-                trash(&trashes[i], i);
+                trash(&trashes[i]);
             }
             move_sprite(trashes[i].sprite, trashes[i].x, trashes[i].y);
         }

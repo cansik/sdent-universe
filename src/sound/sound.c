@@ -1,8 +1,3 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <gb/console.h>
-
 #include "sound.h"
 
 INT16 timerCounter = 0;

@@ -1,11 +1,4 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-
-#include "aboutTiles.h"
-#include "aboutMap.h"
-
-#include "../sound/sound.h"
+#include "about.h"
 
 
 void displayAbout() {

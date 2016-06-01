@@ -1,10 +1,5 @@
-#include <gb/gb.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <gb/drawing.h>
-
 #include "player.h"
-#include "constants.h"
+
 
 unsigned char satelite[] =
 {
@@ -49,29 +44,29 @@ UBYTE updatePlayer(Player *p)
 
   x = p->x;
   y = p->y;
-  
+
   if (i & J_SELECT) {
     return 1;
   }
 
   if(i & J_UP && y > 0) {
      y -= 1;
-     set_sprite_tile(0,0); 
+     set_sprite_tile(0,0);
      set_sprite_prop(0,0);
   }
   if(i & J_DOWN) {
      y += 1;
-     set_sprite_tile(0,0); 
+     set_sprite_tile(0,0);
      set_sprite_prop(0,S_FLIPX | 0x01);
   }
   if(i & J_LEFT && x > 0) {
      x -= 1;
-     set_sprite_tile(0,2); 
+     set_sprite_tile(0,2);
      set_sprite_prop(0,S_FLIPY | 0x01);
   }
   if(i & J_RIGHT) {
      x += 1;
-     set_sprite_tile(0,2); 
+     set_sprite_tile(0,2);
      set_sprite_prop(0,0);
   }
 
@@ -85,6 +80,6 @@ UBYTE updatePlayer(Player *p)
   {
       p->y = y;
   }
-  
+
   return 0;
 }
