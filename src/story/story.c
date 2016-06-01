@@ -25,7 +25,7 @@ void loadStory1() {
 
 void loadStory2() {
     DISPLAY_OFF;
-	HIDE_BKG;
+	  HIDE_BKG;
     HIDE_SPRITES;
 
     set_bkg_data( 0, STORY2COUNT, story2Tiles );
@@ -43,7 +43,7 @@ void loadStory2() {
 
 void loadStory3() {
     DISPLAY_OFF;
-	HIDE_BKG;
+	  HIDE_BKG;
     HIDE_SPRITES;
 
     set_bkg_data( 0, STORY3COUNT, story3Tiles );
