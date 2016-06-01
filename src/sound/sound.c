@@ -5,21 +5,8 @@
 
 #include "sound.h"
 
-int timerCounter = 0;
+INT16 timerCounter = 0;
 int currentBeat = 0;
-
-void menuSound()
-{
-  NR52_REG = 0x80;
-  NR51_REG = 0x11;
-  NR50_REG = 0x77;
-
-  NR10_REG = 0x1E;
-  NR11_REG = 0x10;
-  NR12_REG = 0x53;
-  NR13_REG = 0x00;
-  NR14_REG = 0x87;
-}
 
 /* Here's a look at how I created a quick music player for use with GBDK.
 It basically defines how to play a note, and then stores an array of notes
@@ -87,6 +74,25 @@ note song_ch1[16] = { //notes to be played on channel 1
   {NONE, SILENCE, 0x00U}
 };
 
+note song_ch2[16] = { //notes to be played on channel 2
+  {HARMONY, C5, 0x82U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U}
+};
+
 //function to set sound registers based on notes chosen
 void setNote(note *n){
 	switch((*n).i){
@@ -111,30 +117,35 @@ void setNote(note *n){
 	}
 }
 
-//This function plays whatever note is on
-//the current beat in Channel 1
 void playChannel1(){
 	setNote(&song_ch1[currentBeat]);
 	NR51_REG |= 0x11U; //enable sound on channel 1
 }
 
-//Timer function gets called 16 times a second
-void timerInterrupt(){
-	if (timerCounter == 4){ //every 4 ticks is a beat, or 4 beats per second
+void playChannel2(){
+	setNote(&song_ch2[currentBeat]);
+	NR51_REG |= 0x22U; //enable sound on channel 2
+}
+
+void playMusic(){
+  // only play all 512 updates
+	if (timerCounter == 512){
 		timerCounter=0;
 		currentBeat = currentBeat == 15 ? 0 : currentBeat+1;
-		playChannel1(); //every beat, play the sound for that beat
-		//playChannel2(); make more functions to play sounds on
-		//playChannel3(); the other channels
-		//playChannel4();
+		playChannel1();
+    playChannel2();
 	}
 	timerCounter++;
 }
 
-/*To have more notes playing simultaneously, i'd need
-to make up to three more note arrays, song_ch2, song_ch3, song_ch4,
-add new playChannel1/2/3() functions, and add them to the timer interrupt
-If there are multiple songs, I can change the playChannel1() function to
-refer to a pointer to the 'active song' array, and then change the active
-array based on which song is supposed to be playing.
-*/
+void enableSound()
+{
+  NR52_REG = 0x80;
+  NR50_REG = 0x77;
+}
+
+void resetMusic()
+{
+  currentBeat = 0;
+  timerCounter = 0;
+}
