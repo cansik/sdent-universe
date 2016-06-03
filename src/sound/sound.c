@@ -2,6 +2,7 @@
 
 INT16 timerCounter = 0;
 int currentBeat = 0;
+int chainCounter = 0;
 
 /* Here's a look at how I created a quick music player for use with GBDK.
 It basically defines how to play a note, and then stores an array of notes
@@ -35,8 +36,11 @@ typedef enum {
 	NONE,
 	MELODY,  //channel 1
 	HARMONY, //channel 1
+  BASS,    //channel 2
+  BASSDRUM, //channel 4
 	SNARE,   //channel 4
-	CYMBAL   //channel 4
+	CYMBAL,   //channel 4
+  HIHAT    //channel 4
 } instrument;
 
 //Define a note as having a pitch, instrument, and volume envelope
@@ -46,45 +50,152 @@ typedef struct {
 	UBYTE env;
 } note;
 
+typedef struct {
+  UBYTE c1;
+  UBYTE c2;
+  UBYTE c3;
+  UBYTE c4;
+} chain;
+
+chain menu_track[8] = {
+  {1, 0, 0, 0},
+  {1, 1, 0, 0},
+  {1, 1, 0, 0},
+  {1, 1, 0, 1},
+
+  {0, 1, 0, 1},
+  {0, 1, 0, 0},
+  {1, 1, 0, 1},
+  {1, 0, 0, 1},
+};
+
 //define a song as a series of note structs
 //This song is a 16 note loop on channel 1
 //each channel should have its own array, so
 //that multiple notes can be played simultaneously
-note song_ch1[16] = { //notes to be played on channel 1
-  {MELODY, A3, 0x82U},
-  {MELODY, A4, 0x81U},
-  {MELODY, A3, 0x81U},
-  {MELODY, A4, 0x81U},
-  {MELODY, A3, 0x81U},
-  {MELODY, A4, 0x81U},
-  {HARMONY, C4, 0x81U},
+note song_ch1[32] = { //notes to be played on channel 1
+  {MELODY, F4, 0x83U},
+  {MELODY, A4, 0x83U},
+  {MELODY, D4, 0x83U},
   {NONE, SILENCE, 0x00U},
-  {MELODY, A3, 0x81U},
-  {MELODY, A4, 0x81U},
-  {MELODY, A3, 0x81U},
-  {MELODY, A4, 0x82U},
-  {MELODY, A3, 0x83U},
-  {MELODY, A4, 0x84U},
-  {HARMONY, C4, 0x81U},
+
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
+  {MELODY, F4, 0x83U},
+  {MELODY, A4, 0x83U},
+  {MELODY, G4, 0x83U},
+  {NONE, SILENCE, 0x00U},
+
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
+  {MELODY, F4, 0x83U},
+  {MELODY, A4, 0x83U},
+  {MELODY, C5, 0x83U},
+  {NONE, SILENCE, 0x00U},
+
+  {MELODY, G4, 0x83U},
+  {NONE, SILENCE, 0x00U},
+  {MELODY, F4, 0x83U},
+  {MELODY, D4, 0x83U},
+
+  {MELODY, F4, 0x83U},
+  {MELODY, A4, 0x83U},
+  {MELODY, G4, 0x83U},
+  {NONE, SILENCE, 0x00U},
+
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
   {NONE, SILENCE, 0x00U}
 };
 
-note song_ch2[16] = { //notes to be played on channel 2
-  {HARMONY, C5, 0x82U},
+note song_ch2[32] = { //notes to be played on channel 2
+  {BASS, C3, 0x83U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+
+  {BASS, C3, 0x83U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+
+  {BASS, C3, 0x83U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+
+  {BASS, C3, 0x83U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+  {BASS, C3, 0x51U},
+
+  {BASS, D3, 0x83U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U},
+
+  {BASS, D3, 0x83U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U},
+
+  {BASS, D3, 0x83U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U},
+
+  {BASS, D3, 0x83U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U},
+  {BASS, D3, 0x51U}
+};
+
+note song_ch4[32] = { //notes to be played on channel 4
+  {BASSDRUM, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {HIHAT, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
+  {SNARE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {HIHAT, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
   {NONE, SILENCE, 0x00U},
   {NONE, SILENCE, 0x00U},
+  {BASSDRUM, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
+  {SNARE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {HIHAT, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
+  {BASSDRUM, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {HIHAT, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
+  {SNARE, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+  {HIHAT, SILENCE, 0x00U},
+  {NONE, SILENCE, 0x00U},
+
   {NONE, SILENCE, 0x00U},
   {NONE, SILENCE, 0x00U},
+  {BASSDRUM, SILENCE, 0x00U},
   {NONE, SILENCE, 0x00U},
+
+  {SNARE, SILENCE, 0x00U},
   {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
-  {NONE, SILENCE, 0x00U},
+  {HIHAT, SILENCE, 0x00U},
   {NONE, SILENCE, 0x00U}
 };
 
@@ -93,22 +204,41 @@ void setNote(note *n){
 	switch((*n).i){
 		case MELODY:
 			NR10_REG = 0x00U; //pitch sweep
-			NR11_REG = 0x84U; //wave duty
+			NR11_REG = 0x81U; //wave duty
 			NR12_REG = (*n).env; //envelope
 			NR13_REG = (UBYTE)frequencies[(*n).p]; //low bits of frequency
 			NR14_REG = 0x80U | ((UWORD)frequencies[(*n).p]>>8); //high bits of frequency (and sound reset)
 		break;
-		case HARMONY:
-			NR10_REG = 0x01U;
-			NR11_REG = 0x00U; //wave duty for harmony is different
-			NR12_REG = (*n).env;
-			NR13_REG = (UBYTE)frequencies[(*n).p];
-			NR14_REG = 0x80U | ((UWORD)frequencies[(*n).p]>>8);
+    case BASS:
+			NR21_REG = 0x84U;
+			NR22_REG = (*n).env;
+			NR23_REG = (UBYTE)frequencies[(*n).p];
+			NR24_REG = 0x80U | ((UWORD)frequencies[(*n).p]>>8);
+      break;
+		case BASSDRUM:
+      NR41_REG = 0x07U;
+      NR42_REG = 0x72U;
+      NR43_REG = 0x6FU;
+      NR44_REG = 0x80U;
 		break;
-		case SNARE:
+    case SNARE:
+      NR41_REG = 0x07U;
+      NR42_REG = 0x72U;
+      NR43_REG = 0x37U;
+      NR44_REG = 0x80U;
+    break;
+		case HIHAT:
+      NR41_REG = 0x07U;
+      NR42_REG = 0x71U;
+      NR43_REG = 0x11U;
+      NR44_REG = 0x80U;
 		break;
-		case CYMBAL:
-		break;
+    case CYMBAL:
+      NR41_REG = 0x07U;
+      NR42_REG = 0x73U;
+      NR43_REG = 0x11U;
+      NR44_REG = 0x80U;
+    break;
 	}
 }
 
@@ -122,25 +252,60 @@ void playChannel2(){
 	NR51_REG |= 0x22U; //enable sound on channel 2
 }
 
+void playChannel4(){
+  setNote(&song_ch4[currentBeat]);
+  NR51_REG |= 0x88U; //enable sound on channel 3
+}
+
+void playChannels(chain *c)
+{
+  if((*c).c1 == 1) {
+    playChannel1();
+  }
+
+  if((*c).c2 == 1) {
+    playChannel2();
+  }
+
+  //if((*n).c3) {playChannel3();}
+  if((*c).c4 == 1) {
+    playChannel4();
+  }
+}
+
 void playMusic(){
   // only play all 512 updates
-	if (timerCounter == 512){
+	if (timerCounter == 480)
+  {
 		timerCounter=0;
-		currentBeat = currentBeat == 15 ? 0 : currentBeat+1;
-		playChannel1();
-    playChannel2();
+
+    // check which channel to fire
+    playChannels(&menu_track[chainCounter]);
+
+    if(currentBeat == 31)
+    {
+      currentBeat = 0;
+
+      // increase chain counter
+      chainCounter = chainCounter == 7 ? 0 : chainCounter+1;
+    }
+    else
+    {
+      currentBeat++;
+    }
 	}
 	timerCounter++;
 }
 
 void enableSound()
 {
-  NR52_REG = 0x80;
-  NR50_REG = 0x77;
+  NR52_REG = 0x80; // All channels on
+  NR50_REG = 0xFF; // Vin SO01 & Vin S002 On -> Volume Max
 }
 
 void resetMusic()
 {
   currentBeat = 0;
   timerCounter = 0;
+  chainCounter = 0;
 }

@@ -13,5 +13,6 @@ void resetMusic();
 
 extern int timerCounter;
 extern int currentBeat;
+extern int loopCount;
 
 #endif

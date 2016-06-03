@@ -71,7 +71,7 @@ chain menu_track[8] = {
   {0, 1, 0, 1},
   {0, 1, 0, 0},
   {1, 1, 0, 1},
-  {0, 0, 0, 1},
+  {1, 0, 0, 1},
 };
 
 //define a song as a series of note structs
@@ -280,7 +280,7 @@ void playChannels(chain *c)
 
 void playMusic(){
   // only play all 512 updates
-	if (timerCounter == 512)
+	if (timerCounter == 480)
   {
 		timerCounter=0;
 
