@@ -26,7 +26,7 @@ unsigned char satelite[] =
 void initPlayer() {
     SPRITES_8x8;      /* sets sprites to, yep you guessed it, 8x16 mode */
 
-    set_sprite_data(0, 5,satelite);   /* defines the sprite data */
+    set_sprite_data(0, 6,satelite);   /* defines the sprite data */
     set_sprite_tile(0,0);
     set_sprite_tile(1,1);
     set_sprite_tile(2,2);
