@@ -10,7 +10,7 @@
 typedef struct score
 {
    UBYTE score;
-   BYTE fail;
+   UBYTE fail;
 } Score;
 
 void displayScore();

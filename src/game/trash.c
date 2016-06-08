@@ -59,7 +59,9 @@ void updateTrash(UBYTE x, UBYTE y, Score *s) {
           trashes[i].y = 0;
           move_sprite(trashes[i].sprite, 0, 0);
           s->score++;
-          s->fail--;
+          if (s->fail != 0) {
+            s->fail--;
+          }
         } else {
             trashes[i].y+=trashes[i].speed;
             if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
