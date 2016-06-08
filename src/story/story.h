@@ -7,6 +7,7 @@
 
 #include "storyTiles.h"
 #include "storyMap.h"
+#include "../sound/sound.h"
 
 void displayStory();
 

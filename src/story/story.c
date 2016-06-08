@@ -97,5 +97,7 @@ void displayStory() {
         if (ch == 1) {
             loadStory(curr);
         }
+
+        playMusic();
     } while (1);
 }
