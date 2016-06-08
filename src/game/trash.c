@@ -37,10 +37,10 @@ void initTrash() {
     {
         trashes[i].value = 1;
         trashes[i].speed = (rand() & 1) + 1;
-        trashes[i].sprite = i+1;
+        trashes[i].sprite = i+4;
         trashes[i].x = 0;
         trashes[i].y = 0;
-        set_sprite_tile(trashes[i].sprite,i%3+3);
+        set_sprite_tile(trashes[i].sprite,i%2+4);
         move_sprite(trashes[i].sprite,trashes[i].x,trashes[i].y);
      }
 }
