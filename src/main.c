@@ -15,7 +15,7 @@ void main() {
               play();
               break;
           case 2:
-              //Highscore
+              displayScore();
               break;
           case 3:
               displayAbout();

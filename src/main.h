@@ -12,5 +12,6 @@
 #include "about/about.h"
 #include "story/story.h"
 #include "sound/sound.h"
+#include "score/score.h"
 
 #endif

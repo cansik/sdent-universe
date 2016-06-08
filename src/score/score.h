@@ -6,6 +6,7 @@
 #include <ctype.h>
 
 #include "scoreTiles.h"
+#include "saveScore.h"
 
 typedef struct score
 {
@@ -15,5 +16,7 @@ typedef struct score
 
 void displayScore();
 void renderScore(Score *s);
+void saveScore(Score *s);
+void initScore();
 
 #endif

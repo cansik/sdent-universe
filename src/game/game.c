@@ -31,6 +31,7 @@ void play() {
     while(1) {
         renderPlayer(&p);
         if (updatePlayer(&p) || s.fail >= 20) {
+            saveScore(&s);
             cleanupTrash();
             cleanupPlayer();
             return;
