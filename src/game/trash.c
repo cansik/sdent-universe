@@ -1,11 +1,9 @@
-
-
 #include "trash.h"
 
 
 #define NUMOFTRASH 10
-#define X_MARGIN 3
-#define Y_MARGIN 3
+#define X_MARGIN 8
+#define Y_MARGIN 8
 
 Trash trashes[NUMOFTRASH];
 UBYTE seed = 0;
@@ -50,12 +48,13 @@ void cleanupTrash() {
     for (i = 0; i < NUMOFTRASH; i++) {
         move_sprite(trashes[i].sprite, 0, 0); //Move them out of view, is there a better way?
     }
+    level = 1;
 }
 
 void updateTrash(UBYTE x, UBYTE y, Score *s) {
     UBYTE i;
     for (i = 0; i < level; i++) {
-        if(trashes[i].x <= x + X_MARGIN && trashes[i].x >= x - X_MARGIN && trashes[i].y <= y + Y_MARGIN && trashes[i].y >= y - Y_MARGIN) {
+        if(trashes[i].x <= x + X_MARGIN && trashes[i].x >= x && trashes[i].y <= y + Y_MARGIN && trashes[i].y >= y) {
           trashes[i].x = 0;
           trashes[i].y = 0;
           move_sprite(trashes[i].sprite, 0, 0);
