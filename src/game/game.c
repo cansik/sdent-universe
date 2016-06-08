@@ -34,6 +34,6 @@ void play() {
         }
         updateTrash(p.x, p.y, &s);
         renderScore(&s);
-        delay(15);
+        delay(10);
     }
 }

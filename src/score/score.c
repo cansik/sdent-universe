@@ -17,22 +17,20 @@ void initScore() {
     set_sprite_tile(24,getTileNumberFromNumber(0));
     set_sprite_tile(25,getTileNumberFromNumber(0));
     set_sprite_tile(26,getTileNumberFromNumber(0));
+
+    move_sprite(20,108,148);
+    move_sprite(21,116,148);
+    move_sprite(22,124,148);
+    move_sprite(23,132,148);
+    move_sprite(24,140,148);
+    move_sprite(25,148,148);
+    move_sprite(26,156,148);
 }
 
 void renderScore(Score *s) {
-    if (s->score < 10) {
-        set_sprite_tile(26, getTileNumberFromNumber(s->score));
-    }
 
-
-    move_sprite(20,108,148); 
-    move_sprite(21,116,148); 
-    move_sprite(22,124,148); 
-    move_sprite(23,132,148); 
-    move_sprite(24,140,148); 
-    move_sprite(25,148,148); 
-    move_sprite(26,156,148); 
-
-
+    UBYTE h = s->score/100;
+    set_sprite_tile(24,getTileNumberFromNumber(h));
+    set_sprite_tile(25,getTileNumberFromNumber((s->score-h)/10));
+    set_sprite_tile(26,getTileNumberFromNumber(s->score%10));
 }
-
