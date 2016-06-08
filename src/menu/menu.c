@@ -88,6 +88,6 @@ UBYTE mainMenu() {
     }
 
     // sound
-    playMusic();
+    playMusic(480);
   }
 }

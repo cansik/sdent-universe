@@ -273,9 +273,9 @@ void playChannels(chain *c)
   }
 }
 
-void playMusic(){
+void playMusic(INT16 speed){
   // only play all 512 updates
-	if (timerCounter == 480)
+	if (timerCounter == speed)
   {
 		timerCounter=0;
 
