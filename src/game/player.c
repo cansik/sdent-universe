@@ -1,6 +1,7 @@
 #include "player.h"
 
-
+UBYTE x_bound;
+UBYTE y_bound;
 unsigned char satelite[] =
 {
   /* Player top left */
@@ -24,6 +25,9 @@ unsigned char satelite[] =
 };
 
 void initPlayer() {
+    x_bound = GRAPHICS_WIDTH+PADDING_WIDTH - 8;
+    y_bound = GRAPHICS_HEIGHT+PADDING_HEIGHT - 8;
+
     SPRITES_8x8;      /* sets sprites to, yep you guessed it, 8x16 mode */
 
     set_sprite_data(0, 6,satelite);   /* defines the sprite data */
@@ -70,12 +74,12 @@ UBYTE updatePlayer(Player *p)
   }
 
   // check bounds
-  if(x >= PADDING_WIDTH && x + p->w < GRAPHICS_WIDTH+PADDING_WIDTH)
+  if(x >= PADDING_WIDTH && x + p->w < x_bound)
   {
       p->x = x;
   }
 
-  if(y >= PADDING_HEIGHT && y + p->h < GRAPHICS_HEIGHT+PADDING_HEIGHT)
+  if(y >= PADDING_HEIGHT && y + p->h < y_bound)
   {
       p->y = y;
   }
