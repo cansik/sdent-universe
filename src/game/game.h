@@ -10,6 +10,7 @@
 #include "spaceMap.h"
 #include "trash.h"
 #include "../score/score.h"
+#include "../sound/sound.h"
 
 void play();
 

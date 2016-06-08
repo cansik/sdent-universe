@@ -25,6 +25,9 @@ void play() {
     initPlayer();
     initTrash();
     initScore();
+
+    resetMusic();
+
     while(1) {
         renderPlayer(&p);
         if (updatePlayer(&p) || s.fail >= 20) {
@@ -34,6 +37,9 @@ void play() {
         }
         updateTrash(p.x, p.y, &s);
         renderScore(&s);
+
+        playMusic(10);
+
         delay(10);
     }
 }
