@@ -21,5 +21,6 @@ typedef struct player
 void initPlayer();
 void renderPlayer(Player *p);
 UBYTE updatePlayer(Player *p);
+void cleanupPlayer();
 
 #endif

@@ -28,6 +28,7 @@ void play() {
         renderPlayer(&p);
         if (updatePlayer(&p) || s.fail <= -20) {
             cleanupTrash();
+            cleanupPlayer();
             return;
         }
         updateTrash(p.x, p.y, &s);

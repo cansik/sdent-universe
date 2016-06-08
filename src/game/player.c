@@ -82,3 +82,10 @@ UBYTE updatePlayer(Player *p)
 
   return 0;
 }
+
+void cleanupPlayer() {
+  move_sprite(0,0);         /* puts the first sprite on screen */
+  move_sprite(1,0); 
+  move_sprite(2,0);
+  move_sprite(3,0);
+}
