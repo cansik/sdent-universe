@@ -65,7 +65,7 @@ void updateTrash(UBYTE x, UBYTE y, Score *s) {
           }
         } else {
             trashes[i].y+=trashes[i].speed;
-            if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
+            if (trashes[i].x != 0 && trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
                 trash(&trashes[i]);
                 s->fail++;
             }
