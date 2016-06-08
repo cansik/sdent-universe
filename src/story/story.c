@@ -98,6 +98,6 @@ void displayStory() {
             loadStory(curr);
         }
 
-        playMusic();
+        playMusic(720);
     } while (1);
 }

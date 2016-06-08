@@ -8,7 +8,7 @@
 
 
 void enableSound();
-void playMusic();
+void playMusic(INT16 speed);
 void resetMusic();
 
 extern int timerCounter;
