@@ -26,7 +26,7 @@ void play() {
     initTrash();
     while(1) {
         renderPlayer(&p);
-        if (updatePlayer(&p) || s.fail <= -20) {
+        if (updatePlayer(&p) || s.fail >= 20) {
             cleanupTrash();
             cleanupPlayer();
             return;
