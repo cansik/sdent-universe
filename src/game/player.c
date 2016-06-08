@@ -36,9 +36,9 @@ void initPlayer() {
 void renderPlayer(Player *p)
 {
   move_sprite(0,p->x,p->y);         /* puts the first sprite on screen */
-  move_sprite(1,p->x+8,p->y); 
+  move_sprite(1,p->x+8,p->y);
   move_sprite(2,p->x,p->y+8);
-  move_sprite(3,p->x+8,p->y+8);  
+  move_sprite(3,p->x+8,p->y+8);
 
   SHOW_SPRITES;
 }
@@ -84,8 +84,8 @@ UBYTE updatePlayer(Player *p)
 }
 
 void cleanupPlayer() {
-  move_sprite(0,0);         /* puts the first sprite on screen */
-  move_sprite(1,0); 
-  move_sprite(2,0);
-  move_sprite(3,0);
+  move_sprite(0,0,0);         /* puts the first sprite on screen */
+  move_sprite(1,0,0);
+  move_sprite(2,0,0);
+  move_sprite(3,0,0);
 }
