@@ -24,6 +24,7 @@ void play() {
     DISPLAY_ON;
     initPlayer();
     initTrash();
+    initScore();
     while(1) {
         renderPlayer(&p);
         if (updatePlayer(&p) || s.fail <= -20) {
@@ -32,6 +33,7 @@ void play() {
             return;
         }
         updateTrash(p.x, p.y, &s);
+        renderScore(&s);
         delay(15);
     }
 }
