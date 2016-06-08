@@ -4,7 +4,7 @@
 void play() {
     Player p = {50, 50, 5, 5};
     UBYTE score = 0;
-
+    Score s = {0, 0};
     DISPLAY_OFF;
     HIDE_BKG;
     HIDE_SPRITES;
@@ -26,11 +26,11 @@ void play() {
     initTrash();
     while(1) {
         renderPlayer(&p);
-        if (updatePlayer(&p)) {
+        if (updatePlayer(&p) || s.fail <= -20) {
             cleanupTrash();
             return;
         }
-        updateTrash(p.x, p.y, &score);
+        updateTrash(p.x, p.y, &s);
         delay(15);
     }
 }

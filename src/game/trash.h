@@ -7,6 +7,7 @@
 #include <rand.h>
 #include <gb/console.h>
 #include <gb/drawing.h>
+#include "../score/score.h"
 
 #include "constants.h"
 
@@ -23,6 +24,6 @@ typedef struct trash
 void initTrash();
 void cleanupTrash();
 
-void updateTrash(UBYTE x, UBYTE y, UBYTE *score);
+void updateTrash(UBYTE x, UBYTE y, Score *s);
 
 #endif

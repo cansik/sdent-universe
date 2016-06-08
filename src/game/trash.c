@@ -52,14 +52,15 @@ void cleanupTrash() {
     }
 }
 
-void updateTrash(UBYTE x, UBYTE y, UBYTE *score) {
+void updateTrash(UBYTE x, UBYTE y, Score *s) {
     UBYTE i;
     for (i = 0; i < level; i++) {
         if(trashes[i].x <= x + X_MARGIN && trashes[i].x >= x - X_MARGIN && trashes[i].y <= y + Y_MARGIN && trashes[i].y >= y - Y_MARGIN) {
           trashes[i].x = 0;
           trashes[i].y = 0;
           move_sprite(trashes[i].sprite, 0, 0);
-          *score++;
+          s->score++;
+          s->fail--;
           if(level < 10) {
             level++;
           }
@@ -67,6 +68,7 @@ void updateTrash(UBYTE x, UBYTE y, UBYTE *score) {
             trashes[i].y+=trashes[i].speed;
             if (trashes[i].y > GRAPHICS_HEIGHT+PADDING_HEIGHT) {
                 trash(&trashes[i]);
+                s->fail++;
             }
             move_sprite(trashes[i].sprite, trashes[i].x, trashes[i].y);
         }

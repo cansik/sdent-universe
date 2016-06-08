@@ -9,6 +9,7 @@
 #include "spaceTiles.h"
 #include "spaceMap.h"
 #include "trash.h"
+#include "../score/score.h"
 
 void play();
 
