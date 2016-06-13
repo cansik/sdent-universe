@@ -1,7 +1,7 @@
 #include "trash.h"
 
 
-#define NUMOFTRASH 10
+#define NUMOFTRASH 5
 #define X_MARGIN 8
 #define Y_MARGIN 8
 
@@ -59,6 +59,9 @@ void updateTrash(UBYTE x, UBYTE y, Score *s) {
           trashes[i].y = 0;
           move_sprite(trashes[i].sprite, 0, 0);
           s->score++;
+          if(level < NUMOFTRASH) {
+	    level++;
+ 	  }
           if (s->fail != 0) {
             s->fail--;
           }
