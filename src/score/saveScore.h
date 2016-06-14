@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-extern UBYTE highscore;
-extern UBYTE lastscore;
+extern UBYTE highscore[1];
+extern UBYTE lastscore[1];
 
 #endif

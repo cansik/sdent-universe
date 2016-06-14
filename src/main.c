@@ -4,6 +4,8 @@ void main() {
     UBYTE choice;
     enableSound();
 
+    ENABLE_RAM_MBC1;
+
     while(1)
     {
         resetMusic();
@@ -24,4 +26,8 @@ void main() {
 
       wait_vbl_done();
     }
+
+    DISABLE_RAM_MBC1;
+    
+    return;
 }

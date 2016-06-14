@@ -34,6 +34,7 @@ void play() {
             saveScore(&s);
             cleanupTrash();
             cleanupPlayer();
+            cleanupScore();
             return;
         }
         updateTrash(p.x, p.y, &s);

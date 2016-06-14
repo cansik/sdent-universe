@@ -9,7 +9,7 @@ BIN = bin/main.gb
 all: $(BIN)
 
 $(BIN): $(OBJ)
-		$(CC) -o $(BIN) $(OBJ)
+		$(CC) -Wl-m -Wl-yt2 -Wl-yo4 -Wl-ya4 -Wl-yp0x143=0x80 -o $(BIN) $(OBJ)
 
 %aveScore.o: %aveScore.c
 		$(CC) -c $< -o $@ $(CFLAGS2)

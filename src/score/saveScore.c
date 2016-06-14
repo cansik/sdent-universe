@@ -1,4 +1,4 @@
 #include "saveScore.h"
 
-UBYTE highscore;
-UBYTE lastscore;
+UBYTE highscore[1];
+UBYTE lastscore[1];

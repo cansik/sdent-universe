@@ -1,3 +1,5 @@
+#ifndef SCORETILES_H
+#define SCORETILES_H
 /*
 
  SCORETILES.H
@@ -28,4 +30,7 @@
 /* Start of tile array. */
 extern unsigned char scoreTiles[];
 
+extern unsigned char scoreMapTiles[];
 /* End of SCORETILES.H */
+
+#endif
