@@ -49,28 +49,30 @@ void renderPlayer(Player *p)
 
 UBYTE updatePlayer(Player *p)
 {
-  UBYTE x,y,i;
+  UBYTE x,y,i,speed;
 
   i = joypad();
-
+  speed = 1;
   x = p->x;
   y = p->y;
-
+  if( i & J_A){
+    speed = 3;
+  }
   if (i & J_SELECT) {
     return 1;
   }
 
   if(i & J_UP && y > 0) {
-     y -= 1;
+     y -= speed;
   }
   if(i & J_DOWN) {
-     y += 1;
+     y += speed;
   }
   if(i & J_LEFT && x > 0) {
-     x -= 1;
+     x -= speed;
   }
   if(i & J_RIGHT) {
-     x += 1;
+     x += speed;
   }
 
   // check bounds
