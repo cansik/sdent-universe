@@ -1,5 +1,6 @@
 #include "about.h"
 
+#define INPUT_DELAY 150
 
 void displayAbout() {
     int joy;
@@ -36,6 +37,8 @@ void displayAbout() {
 
   SHOW_BKG;
   DISPLAY_ON;
+
+  delay(INPUT_DELAY);
 
    do
    {

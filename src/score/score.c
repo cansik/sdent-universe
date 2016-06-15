@@ -1,5 +1,7 @@
 #include "score.h"
 
+#define INPUT_DELAY 150
+
 UBYTE getTileNumberFromNumber(UBYTE num) {
     return num + 24;
 }
@@ -61,6 +63,8 @@ void displayScore() {
 
   SHOW_SPRITES;
 
+  delay(INPUT_DELAY);
+
    do
    {
    	joy = joypad();
@@ -68,7 +72,7 @@ void displayScore() {
 	waitpadup();
 
   	HIDE_BKG;
-      
+
     return;
 }
 
